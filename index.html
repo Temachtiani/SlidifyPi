@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Bootstrap Pi Estimation</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Bootstrap Pi Estimation">
+  <meta name="author" content="Jose Reyes-Valdes">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>Bootstrap Pi Estimation</h1>
+    <h2>Simulation</h2>
+    <p>Jose Reyes-Valdes<br/>Researcher</p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>Introduction</h2>
+  </hgroup>
+  <article data-timings="">
+    <p></br></p>
+
+<p>Bootstrap is an statistical technique used to estimate parameters under a minimum of asumptions.</p>
+
+<p>Bootstrap works resamplig $m$ times a fixed sample of size $n$ with replace and estimating the parameter of interest each time.</p>
+
+<p>From $m$ estimates of soma parameter the empiricaldistribution of the parameters is built, which can be used to construct confidence intervals or testing statistical hypothesis.</p>
+
+<p>From ageometric approach, $\pi$ is defined as the ratio between a circumference an it perimeter.</p>
+
+<p>As it is well known, $\pi$ is an irational number that can be calculated with defined presicion using numeric sequences.</p>
+
+<p>An alternative way to define the number $\pi$ is as expectation of random variable estimated through bootstrap techinque.</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-2" style="background:;">
+  <hgroup>
+    <h2>Methodology</h2>
+  </hgroup>
+  <article data-timings="">
+    <ol>
+<li><p>In order to build the empirical distribution of random variable with expectation being the irrational number \(\pi\), a sample of size 1000 and bootstrap 3000 repetitions are given.</p></li>
+<li><p>Two random samples of size 1000 are taken from uniform distribution in \((-1, 1)\).</p></li>
+<li><p>If squared sum of each pair of samples is less than one, number one is assigned, otherwise a 0 is assigned. Then proportion is calculated.</p></li>
+<li><p>Every point selected belongs to a square with area equals 4, then 4 times proportion is an estimation of \(\pi\).</p></li>
+<li><p>This procedure is repeated 3000 times to find the empirical distribution, summary, expectation and confidence interval are calculated.</p></li>
+<li><p>Two plots are build: scatterplot of las uniform variables selected and histogram of empirical distribution of pi with mean an confidence interval of 95% drawn in vertical red lines and mean confidence through t.test function in green lines.</p></li>
+</ol>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-3" style="background:;">
+  <hgroup>
+    <h2>Notation and algorithm</h2>
+  </hgroup>
+  <article data-timings="">
+    <p></br>
+</br>
+Mathematically the algoritm is as follows:</p>
+
+<ol>
+<li>Define an empty numerical vector \(v\) of dimension \(m\);</li>
+<li>generate sampes of size \(n\) from \(x_1\sim\mathcal{U}(-1,1)\) and \(x_2\sim\mathcal{U}(-1,1)\), where \(\mathcal{U}(a,b)\) is a uniform distribution in the interval \((a,b)\);</li>
+<li>generate a vector \(w\) of 1&#39;s an 0&#39;s where \(w_i = 1\) if \(x_{1}^{2} + x_{1}^{2} < 1\), otherwise \(w_i = 0\);</li>
+<li>Proportion of 1&#39;s multiplied by 4 in vector \(w\) estimates \(\pi\);</li>
+<li>repeat the process \(m\) times populating \(v\) with estimates in each iteration;</li>
+<li>vector \(v\) is a sample of a random variable with expectation \(\pi\). </li>
+</ol>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h2>Bootstrap</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Red lines in histogram are the bounds of confidence interval for a vector \(v\), and green dotted lines corresponde to the confidence interval of mean of samples in vector \(v\).</p>
+
+<p><img src="assets/fig/chk01-1.png" title="plot of chunk chk01" alt="plot of chunk chk01" style="display: block; margin: auto;" /></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-5" style="background:;">
+  <hgroup>
+    <h2>Estimation and confidence intervals</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><strong>Estimated mean of vector of \(\pi\)&#39;s</strong></p>
+
+<pre><code>## [1] 3.141163
+</code></pre>
+
+<p><strong>Summary for \(\pi\) empirical distribution</strong></p>
+
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   2.956   3.104   3.144   3.141   3.176   3.304
+</code></pre>
+
+<p><strong>Confidence intervel through t.test function for \(\mu\) of vector of \(\pi\)&#39;s</strong></p>
+
+<pre><code>## [1] 3.139329 3.142996
+## attr(,&quot;conf.level&quot;)
+## [1] 0.95
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='Introduction'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='Methodology'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='Notation and algorithm'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Bootstrap'>
+         4
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=5 title='Estimation and confidence intervals'>
+         5
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- MathJax: Fall back to local if CDN offline but local image fonts are not supported (saves >100MB) -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true
+      }
+    });
+  </script>
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <!-- <script src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script> -->
+  <script>window.MathJax || document.write('<script type="text/x-mathjax-config">MathJax.Hub.Config({"HTML-CSS":{imageFont:null}});<\/script><script src="libraries/widgets/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"><\/script>')
+</script>
+<!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
