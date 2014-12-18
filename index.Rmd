@@ -54,7 +54,7 @@ mode        : selfcontained   # {standalone, draft}
 Mathematically the algoritm is as follows:
 
 1. Define an empty numerical vector $v$ of dimension $m$;
-3. generate sampes of size $n$ from $x_1\sim\mathcal{U}(-1,1)$ and $x_2\sim\mathcal{U}(-1,1)$, where $\mathcal{U}(a,b)$ is a uniform distribution in the interval $(a,b)$;
+3. generate sampes of size $n$ from $x_1\sim U(-1,1)$ and $x_2\sim U(-1,1)$, where $U(a,b)$ is a uniform distribution in the interval $(a,b)$;
 3. generate a vector $w$ of 1's an 0's where $w_i = 1$ if $x_{1}^{2} + x_{1}^{2} < 1$, otherwise $w_i = 0$;
 4. Proportion of 1's multiplied by 4 in vector $w$ estimates $\pi$;
 5. repeat the process $m$ times populating $v$ with estimates in each iteration;
